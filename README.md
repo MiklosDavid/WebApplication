@@ -22,7 +22,7 @@
 * *Családfőként* szeretnék megjegyzést fűzni a feladataimhoz. (Feladatoz tartozó megjegyzés)    
 <br/> 
 
-* A főoldalon lehet majd befelentkezni, emellett alkalmazás ismertetése is szerepelni fog. 
+* A főoldalon lehet majd bejelentkezni, emellett alkalmazás ismertetése is szerepelni fog. 
 * A bejelentkezésnél fog eldőlni, hogy a felhasznaló családfőként, vagy csaladtagként kíván bejeletkezni/regisztrálni.   
   
 ### Feladat nem funkcionális követelményei   

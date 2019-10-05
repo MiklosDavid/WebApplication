@@ -47,3 +47,4 @@
  **Feladat teljesítése**: A feladat eltávolítása a teendők lisájáról.   
  **Egyedi feladat**: Olyan feladat, amelyet csak az adott családtag teljesíthet.   
  **Családi feladat**: Olyan "közös" feladat, amelyet a család bármelyik tagja teljesíthet.  
+ 

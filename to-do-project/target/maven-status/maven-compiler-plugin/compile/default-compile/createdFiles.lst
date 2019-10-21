@@ -1,0 +1,16 @@
+hu\elte\todo\ToDoApplication.class
+hu\elte\todo\entities\User.class
+hu\elte\todo\entities\User$Role.class
+hu\elte\todo\controllers\FamilyController.class
+hu\elte\todo\controllers\DescriptionController.class
+hu\elte\todo\repositories\UserRepository.class
+hu\elte\todo\security\CustomBasicAuthenticationEntryPoint.class
+hu\elte\todo\entities\Description.class
+hu\elte\todo\repositories\FamilyRepository.class
+hu\elte\todo\security\WebSecurityConfig.class
+hu\elte\todo\controllers\TaskController.class
+hu\elte\todo\repositories\DescriptionRepository.class
+hu\elte\todo\controllers\UserController.class
+hu\elte\todo\entities\Family.class
+hu\elte\todo\entities\Task.class
+hu\elte\todo\repositories\TaskRepository.class

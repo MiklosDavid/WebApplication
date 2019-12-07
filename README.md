@@ -76,5 +76,5 @@
 * DELETE /users/id : egy User törlése
 * DELETE /descriptions/id : egy Description törlése 
 
-
+![alt text](https://raw.githubusercontent.com/MiklosDavid/WebApplication/master/HasznalatiEsetek.png)
  

@@ -1,0 +1,44 @@
+<form (submit)="submit(taskForm)" #taskForm="ngForm">
+  <div class="form-group">
+    <!-- <small id="categoryHelp" class="form-text text-muted">Give the category of the task (e.g. labor)</small> -->
+    <mat-form-field>
+      <input matInput
+        type="text"
+        name="username"
+        [(ngModel)]="model.username"
+        aria-describedby="usernameHelp"
+        placeholder="Enter username"
+        required
+        #username="ngModel">
+    </mat-form-field>
+    <mat-error *ngIf="username.invalid && (username.dirty || username.touched) && username.errors.required">
+      Username is required!
+    </mat-error>
+  </div>
+
+  <div class="form-group">
+    <!-- <small id="categoryHelp" class="form-text text-muted">Give the category of the task (e.g. labor)</small> -->
+    <mat-form-field>
+      <input matInput
+        type="text"
+        name="category"
+        [(ngModel)]="model.category"
+        aria-describedby="categoryHelp"
+        placeholder="Enter category"
+        required
+        
+        #category="ngModel">
+    </mat-form-field>
+    <mat-error *ngIf="category.invalid && (category.dirty || category.touched) && category.errors.required">
+      category is required!
+    </mat-error>
+
+  </div>
+    
+    <button mat-raised-button
+      [disabled]="!taskForm.valid" 
+      type="submit"
+      color="primary">
+      Save task
+    </button>
+  </form>

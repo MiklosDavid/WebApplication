@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col">
+      <h1 class="display-2">My descriptions</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Text</th>
+            <th scope="col">Task ID</th>
+            <th scope="col">Created at</th> 
+            <th scope="col">Updated at</th> 
+          
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">{{ description.id }}</th>
+            <td>
+              <a [routerLink]="['/descriptions', description.id]">
+                {{ descriptio.text }} 
+                
+              </a>
+               
+              
+            </td>
+            <td>{{ description.task_id }}</td>
+            <td>{{ description.created_at }}</td>  
+            <td>{{ description.updated_at }}</td>
+            
+            <td>
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+  
+  
+    
+    
+  

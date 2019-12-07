@@ -82,3 +82,14 @@
 
 ### Adatbázis diagram 
 
+![Database](https://user-images.githubusercontent.com/48122593/70378346-6fe23e00-191f-11ea-9482-84bbccdc8331.jpg)
+
+### Fejlesztői környezet bemutatása 
+
+## Backend 
+* A backend Apache NetBeans IDE 11.1 segítségével készült, spring boot technológia felhasználásával. 
+## Frontend 
+* A frontend Visual Studio Code segítségével készult, angular keretrendszer felhasználásával. Ezen kívül természetesen használva volt a HTML, CSS, JavaScript. 
+
+### Az alkalmazott könyvtárstruktúra bemutatása 
+

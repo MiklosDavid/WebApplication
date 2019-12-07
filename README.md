@@ -93,3 +93,18 @@
 
 ### Az alkalmazott könyvtárstruktúra bemutatása 
 
+## Backend 
+![strukturanetbeans](https://user-images.githubusercontent.com/48122593/70378568-33fca800-1922-11ea-8d34-a0a8423bfdcd.PNG)
+## Frontend 
+![vscodestruktura1](https://user-images.githubusercontent.com/48122593/70378572-365f0200-1922-11ea-8802-54a28194e984.PNG)
+![vscodestruktura2](https://user-images.githubusercontent.com/48122593/70378575-37902f00-1922-11ea-88ce-833f79e4c5c5.PNG)
+
+### Kliensoldali szolgáltatások listája 
+
+* **Bejelentkezés** : Bejelentkezés, adminként vagy sima userkéent
+* **Feladat lista megtekintése** : Feladat lista megtekintése kiegészítve további információkkal
+* **Feladat lista bővítése/szűkítése** : Új feladat felvéteve, feladat módosítása, feladat kiosztása(admin eseten), feladat elvégzése(törése)
+* **Kijelentkezés**  
+
+
+

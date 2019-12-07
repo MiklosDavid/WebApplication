@@ -48,3 +48,33 @@
  **Egyedi feladat**: Olyan feladat, amelyet csak az adott családtag teljesíthet.   
  **Családi feladat**: Olyan "közös" feladat, amelyet a család bármelyik tagja teljesíthet.  
  
+ ### Végpontok bemutatása 
+ 
+* GET /tasks : megadja a Task-okat
+* GET /tasks/id/descriptions : megadja egy Task-hoz lévő Description-oket
+* GET /familys : megadja a Family-ket
+* GET /familys/id/users : megadja egy Family-het tartozó User-eket
+* GET /users : megadja a User-eket
+* GET /users/id/tasks : megadja egy User-hez tartozó Task-okat
+* GET /descriptions : megadja a Description-oket
+* POST /tasks : Új Task létrehozása
+* POST /tasks/id/descriptions : egy Task-hoz új Description létrehozása
+* POST /familys : Új Family létrehozása
+* POST /familys/id/users : egy Family-hez új User hozzáadása
+* POST /users : Új User létrehozása
+* POST /users/id/tasks : egy User-hez új Task hozzáadása
+* POST /descriptions : Új Description létrehozása 
+* POST /users/login : Felhasználó bejelentkezése 
+* POST /users/register : Felhasználó regisztrálása
+* PUT /tasks/id : egy Task szerkesztése
+* PUT /familys/id : egy Family szerkesztése
+* PUT /users/id : egy User szerkesztése
+* PUT /users/id/tasks : egy User-hez tartozó Task szerkesztése
+* PUT /descriptions/id : egy Description szerkesztése
+* DELETE /tasks/id : Egy Task törlése
+* DELETE /familys/id : egy Family törlése
+* DELETE /users/id : egy User törlése
+* DELETE /descriptions/id : egy Description törlése 
+
+
+ 

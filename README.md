@@ -76,5 +76,7 @@
 * DELETE /users/id : egy User törlése
 * DELETE /descriptions/id : egy Description törlése 
 
+### Használati esetek diagram
 
- 
+![HasznalatiEsetek](https://user-images.githubusercontent.com/48122593/70378310-1974ff80-191f-11ea-9b57-38337f2bada4.jpg)
+

@@ -36,6 +36,9 @@ public class Description {
     @CreationTimestamp
     private LocalDateTime created_at;
 
+    @Column
+    @UpdateTimestamp
+    private LocalDateTime updated_at;
     
     @ManyToOne 
     @JoinColumn

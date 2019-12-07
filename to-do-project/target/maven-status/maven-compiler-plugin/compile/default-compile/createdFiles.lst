@@ -7,8 +7,11 @@ hu\elte\todo\repositories\UserRepository.class
 hu\elte\todo\security\CustomBasicAuthenticationEntryPoint.class
 hu\elte\todo\entities\Description.class
 hu\elte\todo\repositories\FamilyRepository.class
+hu\elte\todo\security\AuthenticatedUser.class
+hu\elte\todo\entities\Task$Status.class
 hu\elte\todo\security\WebSecurityConfig.class
 hu\elte\todo\controllers\TaskController.class
+hu\elte\todo\security\MyUserDetailsService.class
 hu\elte\todo\repositories\DescriptionRepository.class
 hu\elte\todo\controllers\UserController.class
 hu\elte\todo\entities\Family.class

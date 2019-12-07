@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import hu.elte.todo.repositories.DescriptionRepository;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/descriptions")
 public class DescriptionController {
@@ -23,13 +24,13 @@ public class DescriptionController {
     @Autowired
     private DescriptionRepository descriptionRepository;
 
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @GetMapping("")
     public ResponseEntity<Iterable<Description>> getAll() {
         return ResponseEntity.ok(descriptionRepository.findAll());
     }
 
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @GetMapping("/{id}")
     public ResponseEntity<Description> get(@PathVariable Integer id) {
         Optional<Description> description = descriptionRepository.findById(id);
@@ -40,14 +41,14 @@ public class DescriptionController {
         }
     }
 
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @PostMapping("")
     public ResponseEntity<Description> post(@RequestBody Description description) {
         Description savedDescription = descriptionRepository.save(description);
         return ResponseEntity.ok(savedDescription);
     }
 
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @PutMapping("/{id}")
     public ResponseEntity<Description> put(@RequestBody Description description, @PathVariable Integer id) {
         Optional<Description> oDescription = descriptionRepository.findById(id);
@@ -59,7 +60,7 @@ public class DescriptionController {
         }
     }
 
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Integer id) {
         Optional<Description> oDescription = descriptionRepository.findById(id);

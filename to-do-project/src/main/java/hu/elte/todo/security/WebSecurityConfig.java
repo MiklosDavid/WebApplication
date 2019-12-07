@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package hu.elte.todo.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +22,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-//    @Autowired
-//    private UserDetailsService userDetailsService;
-//
-//    @Autowired
-//    public void configureAuth(AuthenticationManagerBuilder auth) throws Exception {
-//      auth.inMemoryAuthentication() 
-//              .withUser("daviduser").password("user").roles("USER").and().withUser("davidadmin").password("admin").roles("USER","ADMIN");
-//          //.userDetailsService(userDetailsService)
-//          //.passwordEncoder(passwordEncoder());
-//    }
-//    
-    
-    
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
       http
@@ -49,20 +44,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
           .sessionManagement()
               .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }    
+    @Autowired
+    protected void configureAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+      auth
+          .userDetailsService(userDetailsService)
+          .passwordEncoder(passwordEncoder());
+    }
+    @Autowired
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+      auth
+          .userDetailsService(userDetailsService)
+          .passwordEncoder(passwordEncoder());
+    }
 
-
- //  @Autowired
- //  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
- //    auth
- //        .inMemoryAuthentication()
- //        .withUser("user").password("password").roles("USER");
-///  }
-//
-//    @Bean
-//    public BCryptPasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-//    
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+    
     @Bean
     public CustomBasicAuthenticationEntryPoint getBasicAuthEntryPoint(){
         return new CustomBasicAuthenticationEntryPoint();

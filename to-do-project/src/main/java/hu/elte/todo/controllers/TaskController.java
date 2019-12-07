@@ -17,7 +17,9 @@ import hu.elte.todo.repositories.TaskRepository;
 import hu.elte.todo.repositories.DescriptionRepository;
 import java.util.List;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
@@ -28,13 +30,13 @@ public class TaskController {
     @Autowired
     private DescriptionRepository descriptionRepository;
 
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @GetMapping("")
     public ResponseEntity<Iterable<Task>> getAll() {
         return ResponseEntity.ok(taskRepository.findAll());
     }
     
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @GetMapping("/{id}")
     public ResponseEntity<Task> get(@PathVariable Integer id) {
         Optional<Task> task = taskRepository.findById(id);
@@ -45,14 +47,14 @@ public class TaskController {
         }
     }
 
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @PostMapping("")
     public ResponseEntity<Task> post(@RequestBody Task task) {
         Task savedTask = taskRepository.save(task);
         return ResponseEntity.ok(savedTask);
     }
     
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @PutMapping("/{id}")
     public ResponseEntity<Task> put(@RequestBody Task task, @PathVariable Integer id) {
         Optional<Task> oTask = taskRepository.findById(id);
@@ -64,7 +66,7 @@ public class TaskController {
         }
     }
 
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Integer id) {
         Optional<Task> oTask = taskRepository.findById(id);
@@ -76,7 +78,7 @@ public class TaskController {
         }
     } 
     
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @GetMapping("/{id}/descriptions")
     public ResponseEntity<Iterable<Description>> descriptions(@PathVariable Integer id) {
         Optional<Task> oTask = taskRepository.findById(id);
@@ -87,7 +89,7 @@ public class TaskController {
         }
     }
 
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @PostMapping("/{id}/descriptions")
     public ResponseEntity<Description> insertDescription(@PathVariable Integer id, @RequestBody Description description) {
         Optional<Task> oTask = taskRepository.findById(id);

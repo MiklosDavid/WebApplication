@@ -4,22 +4,25 @@ import hu.elte.todo.entities.Task;
 import hu.elte.todo.entities.User;
 import hu.elte.todo.repositories.TaskRepository;
 import hu.elte.todo.repositories.UserRepository;
+import hu.elte.todo.security.AuthenticatedUser;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -28,15 +31,42 @@ public class UserController {
     private UserRepository userRepository;  
     
     @Autowired
-    private TaskRepository taskRepository;
+    private TaskRepository taskRepository; 
+    
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
-    @Secured("ROLE_USER")
+    
+    @Autowired 
+    private AuthenticatedUser authenticatedUser;
+
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
+    @PostMapping("register")
+    public ResponseEntity<User> register(@RequestBody User user) {
+        Optional<User> oUser = userRepository.findByUsername(user.getUsername());
+        if (oUser.isPresent()) {
+            return ResponseEntity.badRequest().build();
+        }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setEnabled(true);
+        user.setRole(User.Role.ROLE_USER);
+        return ResponseEntity.ok(userRepository.save(user));
+    }
+    
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
+    @PostMapping("login")
+    public ResponseEntity login() {
+      return ResponseEntity.ok(authenticatedUser.getUser());
+    } 
+    
+    
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @GetMapping("")
     public ResponseEntity<Iterable<User>> getAll() {
         return ResponseEntity.ok(userRepository.findAll());
     }
     
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @GetMapping("/{id}")
     public ResponseEntity<User> get(@PathVariable Integer id) {
         Optional<User> user = userRepository.findById(id);
@@ -47,14 +77,14 @@ public class UserController {
         }
     }
 
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @PostMapping("")
     public ResponseEntity<User> post(@RequestBody User user) {
         User savedUser = userRepository.save(user);
         return ResponseEntity.ok(savedUser);
     }
     
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @PutMapping("/{id}")
     public ResponseEntity<User> put(@RequestBody User user, @PathVariable Integer id) {
         Optional<User> oUser = userRepository.findById(id);
@@ -66,7 +96,7 @@ public class UserController {
         }
     }
 
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Integer id) {
         Optional<User> oUser = userRepository.findById(id);
@@ -78,7 +108,7 @@ public class UserController {
         }
     } 
     
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @GetMapping("/{id}/tasks")
     public ResponseEntity<Iterable<Task>> tasks(@PathVariable Integer id) {
         Optional<User> oUser = userRepository.findById(id);
@@ -89,7 +119,7 @@ public class UserController {
         }
     }
 
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @PostMapping("/{id}/tasks")
     public ResponseEntity<Task> inserTask(@PathVariable Integer id, @RequestBody Task task) {
         Optional<User> oUser = userRepository.findById(id);
@@ -105,7 +135,7 @@ public class UserController {
     }  
     
     
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @PutMapping("/{id}/tasks")
     public ResponseEntity<Iterable<Task>> modifyTasks(@PathVariable Integer id, @RequestBody List<Task> tasks) {
         Optional<User> oUser = userRepository.findById(id);
@@ -126,26 +156,5 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
-//    @Autowired
-//    private BCryptPasswordEncoder passwordEncoder;
-//    
-//    @Autowired
-//    private UserRepository userRepository;
-//
-//    @PostMapping("register")
-//    public ResponseEntity<User> register(@RequestBody User user) {
-//        Optional<User> oUser = userRepository.findByUsername(user.getUsername());
-//        if (oUser.isPresent()) {
-//            return ResponseEntity.badRequest().build();
-//        }
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        user.setEnabled(true);
-//        user.setRole(User.Role.ROLE_USER);
-//        return ResponseEntity.ok(userRepository.save(user));
-//    }
-//
-//    @PostMapping("login")
-//    public ResponseEntity login(@RequestBody User user) {
-//        return ResponseEntity.ok().build();
-//    } 
+
 }
